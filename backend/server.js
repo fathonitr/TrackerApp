@@ -1,5 +1,6 @@
 require('dotenv').config() //environment variable
 const express = require('express')
+const mongoose = require('mongoose')
 const itemRoutes = require('./routes/items')
 
 // function to create Express app
@@ -15,8 +16,17 @@ app.use((req, res, next) => {
 //Routehandler, using the router from ./routes/item.js
 app.use('/api/items', itemRoutes)
 
-// listen for request
-app.listen(process.env.PORT, () => {
-    console.log('listening on port!', process.env.PORT)
-})
+//Connect to db async proc, return promies
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        // listen for request, after connected to db
+        app.listen(process.env.PORT, () => {
+            console.log('connected to db & listening on port', process.env.PORT)
+        })
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
+
 
