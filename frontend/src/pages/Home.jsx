@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 //components 
 import ItemDetails from '../components/ItemDetails'
+import ItemForm from "../components/ItemForm"
 const Home = () => {
     const [items, setItems] = useState(null)
     useEffect(() => {
@@ -19,11 +20,13 @@ const Home = () => {
     return (
         <div className="home">
             <div className="items">
+                {/* check if items not null, if yes show itemdetails */}
                 {items && items.map((item) => (
                     <ItemDetails key={item._id} item={item} />
                     
                 ))}
             </div>
+            <ItemForm />
         </div>
     )
 }

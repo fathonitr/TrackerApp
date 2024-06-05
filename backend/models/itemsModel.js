@@ -10,10 +10,6 @@ const itemSchema = new Schema({
     desc: {
         type: String,
         required: true
-    },
-    load: {
-        type:  Number,
-        required: true
     }
     //Schema, second argument for adding created time
 }, {timestamps: true})
