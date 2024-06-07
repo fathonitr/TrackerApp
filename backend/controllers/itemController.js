@@ -59,7 +59,7 @@ const deleteItem = async (req, res) => {
 
     try {
         const item = await Item.findByIdAndDelete(id)
-        res.status(200).json({ deleted: item })
+        res.status(200).json(item)
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -86,10 +86,10 @@ const updateItem = async (req, res) => {
     try {
         const item = await Item.findByIdAndUpdate(id, {
             //Spread the object
-            ...req.body 
+            ...req.body
         })
 
-        res.status(200).json({updated: item})
+        res.status(200).json({ updated: item })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }

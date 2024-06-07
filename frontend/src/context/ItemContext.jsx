@@ -15,6 +15,12 @@ const itemReducer = (state, action) => {
         items: [action.payload, ...state.items],
       };
     // default case, when none case matched
+    case "DELETE_ITEM":
+      console.log("ID to be deleted: " + action.payload._id)
+      return {
+        // filter through the current items in state
+        items: state.items.filter(i => i._id !== action.payload._id),
+      };
     default:
       return state;
   }
