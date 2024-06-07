@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useItemContext } from "../hooks/useItemContext";
 
 const ItemForm = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [error, setError] = useState(null);
+  const { dispatch } = useItemContext()
   //send to API
   const handleSubmit = async (e) => {
     //e, event object 
@@ -29,7 +31,7 @@ const ItemForm = () => {
       setTitle("");
       setDesc("");
       setError(null);
-
+      dispatch({type: "ADD_ITEM", payload: json})
       console.log("new item added", json);
     }
   };
